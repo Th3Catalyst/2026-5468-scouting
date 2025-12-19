@@ -22,7 +22,7 @@
         <div class="containerInner">
             <h1 class="headerMain">5468 Scouting Form 2025</h1>
             <div class="auto">
-                <h2>Auto Phase</h2>
+                <h2 id="aTitle">Auto Phase</h2>
                 <table class="tableNormal">
                     <tr>
                         <th colspan="2">
@@ -59,9 +59,8 @@
                 <h2 id="teleTitle">Teleop</h2>
             </div>
             
-            
             <div class="endgame">
-                <h2>End Game</h2 class="onField">
+                <h2 id="egTitle">End Game</h2 class="onField">
             <img src="/images/IMG_6898.png" alt="End Game" class="onField">
             <table class="tableNormal leftAlign onField">
                 <tr>
@@ -268,9 +267,8 @@
         const teamNumber = urlParams.get('team');
         const matchNum = urlParams.get('match');
         const scoutName = urlParams.get('name');
-        const scoutingSeat = urlParams.get('seat'); // Retrieve the scouting seat from the URL
-
-        // Populate the fields with the retrieved values
+        const scoutingSeat = urlParams.get('seat');
+        const theme = urlParams.get('theme')
         if (teamNumber) {
             document.getElementById('team').textContent = `Team: ${teamNumber}`;
         }
@@ -278,13 +276,69 @@
             document.getElementById('matchNumInput').textContent = `Match #: ${matchNum}`;
         }
         if (scoutingSeat) {
-            console.log(`Scouting Seat: ${scoutingSeat}`); // Log the scouting seat to verify
+            console.log(`Scouting Seat: ${scoutingSeat}`);
         }
-        // Hide input backgrounds and borders
         document.querySelectorAll('input').forEach((input) => {
             input.style.background = 'none';
             input.style.border = 'none';
         });
+        if (theme === 'red') {
+            document.querySelectorAll('*:not(div)').forEach(function(element) {
+                if (element.nodeName === 'TD'|| element.nodeName === 'TH') {
+                    element.style.border = '1px solid #F88379';
+                }
+                if (element.id !== 'egTitle' && element.id !== 'teleTitle'&& element.id !=='aTitle') {
+                    element.style.color = '#E34234';
+                } else {
+                    element.style.color = 'white';
+                }
+            });
+        } else if (theme === 'blue') {
+            document.querySelectorAll('*:not(div)').forEach(function(element) {
+                if (element.nodeName === 'TD'|| element.nodeName === 'TH') {
+                    element.style.borderColor = '#2DA0ED';
+                }
+                if (element.id !== 'egTitle' && element.id !== 'teleTitle'&& element.id !=='aTitle') {
+                    element.style.color = '	RoyalBlue';
+                } else {
+                    element.style.color = 'white';
+                }
+            });
+        } else if (theme === 'pink') {
+            document.querySelectorAll('*:not(div):not(div)').forEach(function(element) {
+                if (element.nodeName === 'TD' || element.nodeName === 'TH') {
+                    element.style.borderColor = '#FFA6C9';
+                }
+                if (element.id !== 'egTitle' && element.id !== 'teleTitle'&& element.id !=='aTitle') {
+                    element.style.color = '#F58FBD';
+                } else {
+                    element.style.color = 'white';
+                }
+            });
+        } else if (theme === 'purple') {
+            document.querySelectorAll('*:not(div)').forEach(function(element) {
+                if (element.nodeName === 'TD'|| element.nodeName === 'TH') {
+                    element.style.borderColor = 'orchid';
+                }
+                if (element.id !== 'egTitle' && element.id !== 'teleTitle'&& element.id !=='aTitle') {
+                    element.style.color = 'mediumorchid';
+                } else {
+                    element.style.color = 'white';
+                }
+            });
+        } else if (theme === 'gold') {
+            document.querySelectorAll('*:not(div)').forEach(function(element) {
+                if (element.nodeName === 'TD'|| element.nodeName === 'TH') {
+                    element.style.borderColor = 'PaleGoldenrod';
+                }
+                if (element.id !== 'egTitle' && element.id !== 'teleTitle' && element.id !=='aTitle') {
+                    element.style.color = 'goldenrod';
+                } else {
+                    element.style.color = 'white';
+                }
+            });
+        } 
+        
     });
 </script>
 </html>
