@@ -1,5 +1,18 @@
-console.log('working, v4 - Final 2025 Build');
+console.log('working, v1 - 1st 2026 Build');
 document.addEventListener("DOMContentLoaded", () => {
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyApl7KffIOEn1ZL20lFO5kSiuFfzhiZ_-Q",
+        authDomain: "leaderboard-66713.firebaseapp.com",
+        projectId: "leaderboard-66713",
+        storageBucket: "leaderboard-66713.firebasestorage.app",
+        messagingSenderId: "1050366017824",
+        appId: "1:1050366017824:web:b206a00752fd289e97d745",
+        measurementId: "G-N33Y47YXEQ"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = app.firestore(); 
 
     const submitButton = document.getElementById("submit");
     const pleaseWaitMessage = document.createElement("div");
@@ -7,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     pleaseWaitMessage.style.color = "blue";
     pleaseWaitMessage.style.textAlign = "center";
     submitButton.parentNode.insertBefore(pleaseWaitMessage, submitButton);
+    const slider = document.getElementById("test");
+    const output = document.getElementById("lbltst");
+    output.textContent = slider.value;
+
+    slider.oninput = function() {
+        output.textContent = this.value;
+        console.log('changed');
+    }
 
     //TELEOP
 
@@ -110,6 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
             defenseAssess.push("null");
         }
         console.log(defenseAssess);
+
+        incrementLeaderboard(scoutName);
 
         const data = {   // Data to pass to forms
             timestamp: formattedDate, 
@@ -229,6 +252,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         return messages[0].text;
+    }
+
+    async function incrementLeaderboard(scoutName) {
+        try {
+            const nameDocRef = db.collection("leaderboard_submissions").doc(scoutName);
+
+            await nameDocRef.set({
+                name: scoutName,
+                submissionCount: firebase.firestore.FieldValue.increment(1),
+            }, { merge: true });
+
+        } catch (error) {
+            console.error("Error writing submission:", error);
+        }
     }
 
     document.querySelectorAll('input').forEach((input) => {

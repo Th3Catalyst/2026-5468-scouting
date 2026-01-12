@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width">
     <link href="/styles/style.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="javascript.js" defer></script>
 </head>
 <body>
@@ -53,6 +56,40 @@
                         </td>
                     </tr>
                 </table>
+                <table class="tableNormal onField">
+                    <tr>
+                        <th colspan="2">
+                            <span class="header">Did robot score?</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="autoscore" id="aScoreY" value="Yes"> <label for="aScoreY">Yes</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="autoscore" id="aScoreN" value="No"> <label for="aScoreN">No</label>
+                        </td>
+                    </tr>
+                </table>
+                <table class="tableNormal onField">
+                    <tr>
+                        <th colspan="2">
+                            <span class="header">Cycles</span>
+                        </th>
+                    </tr>
+                </table>
+                <table class="tableNormal onField">
+                    <tr>
+                        <th colspan="2">
+                            <span class="header" id="lbltst">yes</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="range" min="0" max="10" value="5" class="slider" id="test">
+                        </td>
+                    </tr>
+                </table>
             </div>
             
             <div class="teleop">
@@ -61,7 +98,6 @@
             
             <div class="endgame">
                 <h2 id="egTitle">End Game</h2 class="onField">
-            <img src="/images/IMG_6898.png" alt="End Game" class="onField">
             <table class="tableNormal leftAlign onField">
                 <tr>
                     <th>

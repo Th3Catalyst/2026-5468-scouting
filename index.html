@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width">
     <link href="/styles/style.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <script src="javascript.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <div id="container">
@@ -50,6 +52,20 @@
                     </tr>
                 </table>
                 <br>
+                <table class="tableNormal">
+                    <tr>
+                        <th>
+                            <span class="header">Top 3 scouters!</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <ol id="leaderboardList">
+                                <li>Loading...</li>
+                            </ol>
+                        </th>
+                    </tr>
+                </table>
                 <button type="submit" class="Jbutton">Go to Scouting Form</button>
             </form>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -103,6 +119,39 @@
             .catch(error => {
                 console.error('Error fetching matches:', error);
             });
+        });
+        const firebaseConfig = {
+            apiKey: "AIzaSyApl7KffIOEn1ZL20lFO5kSiuFfzhiZ_-Q",
+            authDomain: "leaderboard-66713.firebaseapp.com",
+            projectId: "leaderboard-66713",
+            storageBucket: "leaderboard-66713.firebasestorage.app",
+            messagingSenderId: "1050366017824",
+            appId: "1:1050366017824:web:b206a00752fd289e97d745",
+            measurementId: "G-N33Y47YXEQ"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = app.firestore(); 
+
+        const leaderboardRef = db.collection("leaderboard_submissions"); 
+        const q = leaderboardRef.orderBy("submissionCount", "desc").limit(3);
+
+        q.onSnapshot((querySnapshot) => { 
+            leaderboardList.innerHTML = ''; 
+            if (querySnapshot.empty) {
+                leaderboardList.innerHTML = '<li>No submissions yet!</li>';
+                return;
+            }
+
+            querySnapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const listItem = document.createElement('li');
+                listItem.textContent = `${data.name}: ${data.submissionCount} match`;
+                leaderboardList.appendChild(listItem);
+            });
+        }, (error) => {
+            console.error("Error fetching leaderboard:", error);
+            leaderboardList.innerHTML = '<li>Error loading leaderboard.</li>';
         });
 
         document.getElementById('scoutingForm').addEventListener('submit', (event) => {
