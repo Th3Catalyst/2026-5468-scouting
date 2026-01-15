@@ -1,6 +1,9 @@
+
+
+
 const apiKey = 'zu21V7xO4Yu9ny1QVq7HsrYIAEG0p015yi747MxvjUHw9Hk7de60VPxIRBA0gYRN'; 
 
-document.addEventListener('DOMContentLoaded', () => {
+function initialize() {
     const eventKey = document.getElementById('eventKey').value;
     const matchNumSelect = document.getElementById('matchNum');
 
@@ -24,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => {
         console.error('Error fetching matches:', error);
     });
-});
+
 const firebaseConfig = {
     apiKey: "AIzaSyApl7KffIOEn1ZL20lFO5kSiuFfzhiZ_-Q",
     authDomain: "leaderboard-66713.firebaseapp.com",
@@ -105,3 +108,6 @@ document.getElementById('scoutingForm').addEventListener('submit', (event) => {
         console.error('Error fetching match data:', error);
     });
 });
+}
+
+export default initialize

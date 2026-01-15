@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"
-import "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"
-import "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"
+
 import "./styles/style.css";
 
 const geistSans = Geist({
@@ -28,6 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js" />
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js" />
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

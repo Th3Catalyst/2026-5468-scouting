@@ -1,11 +1,19 @@
-import "./scripts/main.js"
+"use client";
+import {useEffect} from "react";
+
+import initialize from "./scripts/main.js"
+
 export default function Home() {
+  useEffect(() => {
+    initialize();
+  }, []);
   return (
     <div id="container">
         <div className="containerInner centerWrap">
             <h1 className="headerMain">Select Match and Scouting Seat</h1>
             <form id="scoutingForm">
                 <table className="tableNormal">
+                  <tbody>
                     <tr>
                         <td>
                             <strong>Name</strong>
@@ -40,9 +48,11 @@ export default function Home() {
                             </select>
                         </td>
                     </tr>
+                  </tbody>
                 </table>
                 <br />
                 <table className="tableNormal">
+                  <tbody>
                     <tr>
                         <th>
                             <span className="header">Top 3 scouters!</span>
@@ -55,12 +65,14 @@ export default function Home() {
                             </ol>
                         </th>
                     </tr>
+                  </tbody>
                 </table>
                 <button type="submit" className="Jbutton">Go to Scouting Form</button>
             </form>
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <div>
                 <table className="tableNormal">
+                  <tbody>
                     <tr>
                         <td>
                             <strong>Color Theme</strong>
@@ -78,6 +90,7 @@ export default function Home() {
                             </select>
                         </td>
                     </tr>
+                  </tbody>
                 </table>
             </div>
         </div>
