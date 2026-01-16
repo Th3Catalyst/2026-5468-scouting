@@ -1,20 +1,24 @@
 
-export default function boolOptions({title, id}: {title: string, id: string}) {
+export default function boolOptions({title, YFunc, NFunc}: {title: string, YFunc: Function, NFunc: Function}) {
     return (
         <table className="tableNormal">
           <tbody>
                 <tr>
-                          <th colSpan={2}>
-                                          <span className="header">{ title }</span>
-                          </th>
+                    <th colSpan={2}>
+                        <span className="header">{ title }</span>
+                    </th>
                 </tr>
                 <tr>
-                          <td>
-                                          <input type="radio" name="field" id="fieldY" value="Yes"/> <label htmlFor="fieldY">Yes</label>
-                          </td>
-                          <td>
-                                          <input type="radio" name="field" id="fieldN" value="No" /> <label htmlFor="fieldN">No</label>
-                          </td>
+                    <td>
+                        <input type="radio" name={title} id={`${title}Y`} value="Yes" onClick={() => {
+                            YFunc()
+                        }}/> <label htmlFor={`${title}Y`}>Yes</label>
+                    </td>
+                    <td>
+                        <input type="radio" name={title} id={`${title}N`} value="No" onClick={() => {
+                            NFunc()
+                        }}/> <label htmlFor={`${title}N`}>No</label>
+                    </td>
                 </tr>
           </tbody>
       </table>

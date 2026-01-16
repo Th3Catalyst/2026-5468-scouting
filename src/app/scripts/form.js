@@ -105,10 +105,7 @@ export function main() {
         const output = document.getElementById("lbltst");
         output.textContent = slider.value;
 
-        slider.oninput = function() {
-            output.textContent = this.value;
-            console.log('changed');
-        }
+        //slider.oninput = 
 
         //TELEOP
 

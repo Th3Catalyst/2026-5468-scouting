@@ -1,7 +1,7 @@
 "use client";
 import {useEffect} from "react";
 import initialize, {main} from "../scripts/form";
-
+import * as c from "../components"
 export default function page() {
     useEffect(() => {
         initialize();
@@ -80,20 +80,7 @@ export default function page() {
                                 </tr>
                             </tbody>
                         </table>
-                        <table className="tableNormal onField">
-                            <tbody>
-                                <tr>
-                                    <th colSpan={2}>
-                                        <span className="header" id="lbltst">yes</span>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="range" min="0" max="10" defaultValue="5" className="slider" id="test" onChange={() => {}} />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <c.Slider title="test" min={0} max={10} defaultVal={5} />
                     </div>
                     
                     <div className="teleop">
