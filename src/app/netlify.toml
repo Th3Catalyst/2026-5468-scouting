@@ -1,1 +1,9 @@
-/* /page.tsx 200   
+[build]
+  base = "src/app"
+  publish = "dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/page.tsx"
+  status = 200
