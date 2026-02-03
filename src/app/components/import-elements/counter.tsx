@@ -6,7 +6,7 @@ export default function fuelCounter({classes}: {classes?: string}) {
 
     let scoreElement = useRef(null);    
     function changeScore(increment: number) {
-        scoreElement.current.innerText = scoreElement.current.innerText + increment
+        scoreElement.current!.innerText = scoreElement.current!.innerText + increment
     } 
     return (
         <table className={`tableNormal ${classes}`}>
