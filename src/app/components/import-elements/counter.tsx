@@ -1,12 +1,13 @@
-function changeScore(score: HTMLElement, increment: number) {
-    score.innerText = score.innerText + increment
-} 
+import { useRef } from 'react'
 export default function fuelCounter({classes}: {classes?: string}) {
     if (!classes) {
         classes = ""
     }
 
-    let scoreElement;    
+    let scoreElement = useRef(null);    
+    function changeScore(increment: number) {
+        scoreElement.current.innerText = scoreElement.current.innerText + increment
+    } 
     return (
         <table className={`tableNormal ${classes}`}>
           <tbody>
@@ -20,16 +21,16 @@ export default function fuelCounter({classes}: {classes?: string}) {
                 </tr>
                 <tr>
                     <td>
-                        <button className="Jbutton" onClick={() => {changeScore(scoreElement!, -1)}}>-1</button>
+                        <button className="Jbutton" onClick={() => {changeScore(-1)}}>-1</button>
                     </td>
                     <td>
-                        <button className="Jbutton" onClick={() => {changeScore(scoreElement!, 1)}}>+1</button>
+                        <button className="Jbutton" onClick={() => {changeScore(1)}}>+1</button>
                     </td>
                     <td>
-                        <button className="Jbutton" onClick={() => {changeScore(scoreElement!, 5)}}>+5</button>
+                        <button className="Jbutton" onClick={() => {changeScore(5)}}>+5</button>
                     </td>
                     <td>
-                        <button className="Jbutton" onClick={() => {changeScore(scoreElement!, 10)}}>+10</button>
+                        <button className="Jbutton" onClick={() => {changeScore(10)}}>+10</button>
                     </td>
                 </tr>
           </tbody>
