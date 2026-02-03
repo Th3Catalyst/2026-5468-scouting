@@ -1,5 +1,12 @@
 import { useRef } from 'react'
-export default function fuelCounter({classes}: {classes?: string}) {
+
+function scoreDisplay({ ref, children }) {
+    return (
+        <span className="header" ref={ ref }>{ children }</span>
+    )
+}
+
+export default function fuelCounter({ classes }: {classes?: string}) {
     if (!classes) {
         classes = ""
     }
@@ -16,7 +23,7 @@ export default function fuelCounter({classes}: {classes?: string}) {
                         <span className="header">Fuel Count: </span>
                     </th>
                     <th>
-                        <span className="header" ref={scoreElement}>0</span>
+                        <scoreDisplay ref={scoreElement}>0</scoreDisplay>
                     </th>
                 </tr>
                 <tr>
