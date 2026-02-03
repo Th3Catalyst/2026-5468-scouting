@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-function scoreDisplay({ ref, children }) {
+function scoreDisplay({ ref, children }: {ref: refObject, children: React.ReactNode) {
     return (
         <span className="header" ref={ ref }>{ children }</span>
     )
